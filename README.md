@@ -21,5 +21,5 @@ The project is developed in two phases:
 
 ---
 
-## 📂 Project Structure
+
 
