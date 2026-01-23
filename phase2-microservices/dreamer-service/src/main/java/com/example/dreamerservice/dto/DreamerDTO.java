@@ -7,7 +7,6 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DreamerDTO {
-
     private Long id;
     private String name;
     private String email;

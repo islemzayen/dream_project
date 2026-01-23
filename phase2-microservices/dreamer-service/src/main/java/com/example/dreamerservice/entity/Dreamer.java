@@ -5,8 +5,6 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
-import java.util.List;
-
 @Entity
 @Getter
 @Setter
@@ -24,6 +22,4 @@ public class Dreamer {
     @Email(message = "Invalid email")
     @Column(unique = true)
     private String email;
-
-
 }

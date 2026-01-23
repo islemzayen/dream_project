@@ -8,7 +8,6 @@ import com.example.dreamerservice.repository.DreamerRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class DreamerService {
@@ -21,45 +20,42 @@ public class DreamerService {
         this.mapper = mapper;
     }
 
+    // ✅ CREATE
     public DreamerDTO create(DreamerDTO dto) {
         Dreamer dreamer = mapper.toEntity(dto);
         return mapper.toDTO(repository.save(dreamer));
     }
 
+    // ✅ GET ALL
     public List<DreamerDTO> getAll() {
         return repository.findAll()
                 .stream()
                 .map(mapper::toDTO)
-                .collect(Collectors.toList());
+                .toList();
     }
 
-    // ✅ ADD THIS (for controller)
+    // ✅ GET BY ID (USED BY FEIGN)
     public DreamerDTO getById(Long id) {
         Dreamer dreamer = repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Dreamer not found"));
         return mapper.toDTO(dreamer);
     }
 
-
-    // ✅ KEEP THIS (for other services, e.g. DreamService)
-    public Dreamer getEntity(Long id) {
-        return repository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Dreamer not found"));
-    }
-    public void delete(Long id) {
-        Dreamer dreamer = repository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Dreamer not found"));
-        repository.delete(dreamer);
-    }
+    // ✅ UPDATE
     public DreamerDTO update(Long id, DreamerDTO dto) {
         Dreamer dreamer = repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Dreamer not found"));
 
-        // update fields
         dreamer.setName(dto.getName());
         dreamer.setEmail(dto.getEmail());
 
         return mapper.toDTO(repository.save(dreamer));
     }
 
+    // ✅ DELETE
+    public void delete(Long id) {
+        Dreamer dreamer = repository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Dreamer not found"));
+        repository.delete(dreamer);
+    }
 }

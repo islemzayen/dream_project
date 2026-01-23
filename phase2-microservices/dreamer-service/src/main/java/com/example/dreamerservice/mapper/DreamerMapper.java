@@ -7,7 +7,7 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface DreamerMapper {
 
-    DreamerDTO toDTO(Dreamer dreamer);
-
     Dreamer toEntity(DreamerDTO dto);
+
+    DreamerDTO toDTO(Dreamer entity);
 }

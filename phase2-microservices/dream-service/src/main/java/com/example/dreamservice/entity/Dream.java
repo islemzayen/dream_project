@@ -3,8 +3,9 @@ package com.example.dreamservice.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Entity
+
 @Data
+@Entity
 public class Dream {
 
     @Id
@@ -15,7 +16,6 @@ public class Dream {
 
     private String description;
 
-    // foreign key only
-    @Column(nullable = false)
+    @Column(name = "dreamer_id", nullable = false)
     private Long dreamerId;
 }

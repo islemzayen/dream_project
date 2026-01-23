@@ -30,4 +30,10 @@ public class SymbolService {
                 .map(mapper::toDTO)
                 .toList();
     }
+
+    public SymbolDTO getById(Long id) {
+        Symbol symbol = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Symbol not found"));
+        return mapper.toDTO(symbol);
+    }
 }

@@ -3,6 +3,7 @@ package com.example.dreamservice.mapper;
 import com.example.dreamservice.dto.DreamDTO;
 import com.example.dreamservice.entity.Dream;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
 public interface DreamMapper {

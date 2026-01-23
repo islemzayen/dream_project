@@ -28,16 +28,12 @@ public class DreamerController {
         return service.getAll();
     }
 
-    // ✅ ADD THIS
+    // 🔥 REQUIRED for OpenFeign validation
     @GetMapping("/{id}")
     public DreamerDTO getById(@PathVariable Long id) {
         return service.getById(id);
     }
-    @DeleteMapping("/{id}")
-    public ResponseEntity<String> delete(@PathVariable Long id) {
-        service.delete(id);
-        return ResponseEntity.ok("Dreamer deleted successfully");
-    }
+
     @PutMapping("/{id}")
     public DreamerDTO update(
             @PathVariable Long id,
@@ -46,5 +42,9 @@ public class DreamerController {
         return service.update(id, dto);
     }
 
-
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> delete(@PathVariable Long id) {
+        service.delete(id);
+        return ResponseEntity.ok("Dreamer deleted successfully");
+    }
 }
